@@ -1,11 +1,11 @@
 var app = angular.module('App', []);
-var baseURL = 'http://127.0.0.1:8000';
+var baseURL = 'https://pmanager9.herokuapp.com';
 
 // app.config(function($routeProvider) {
 //     $routeProvider
-//     .when("/", {
-//       templateUrl : "index.htm"
-//     })
+//     // .when("/", {
+//     //   templateUrl : "index.htm"
+//     // })
 //     .when("/project", {
 //       templateUrl : "project.htm"
 //     })

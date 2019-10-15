@@ -1,5 +1,5 @@
 var StaticServer = require('static-server');
-const port = process.env.PORT || 8090;
+const port = process.env.PORT || 8080;
 var server = new StaticServer({
   rootPath: '.',            // required, the root of the server file tree
   port: port,               // required, the port to listen
