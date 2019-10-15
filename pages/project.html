@@ -1,18 +1,54 @@
 <div class="container">
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">{{projectId}}</h1>
-    </div>
-    <div class="card-deck mb-3 text-center" ng-if="!isLoading">
-        <div class="card mb-4 shadow-sm" ng-repeat="project in projects">
-            <!-- <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{project.name}}</h4>
-                </div> -->
+    <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{project.name}}</h4>
+            </div>
             <div class="card-body">
-                <h1 class="card-title pricing-card-title">{{project.name}}</h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li ng-repeat="task in project.tasks">{{task.title}}</li>
-                </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Detail</button>
+                <h1 class="card-title pricing-card-title"><small class="text-muted">{{project.description}}</small></h1>
+                <ol class="list-group list-group-flush mb-4">
+                    <li class="list-group-item" ng-repeat="task in project.tasks">
+                        <div class="custom-control custom-checkbox">
+                                <!-- ng-change="todoSelected(task, tcompleted)" -->
+                            <input type="checkbox" class="custom-control-input" id="check4" ng-model="task.completed">
+                            <label class="custom-control-label" for="check4">{{task.title}}</label>
+                        </div>
+                    </li>
+                </ol>
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary mb-4" data-toggle="modal"
+                    data-target="#NewTask">Add New task</button>
+                    <a href="/">
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary mb-4">Projects</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="NewTask" tabindex="-1" role="dialog" aria-labelledby="newTask" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newTask">Add New Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" ng-model="newTask.title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description-text" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description-text" ng-model="newTask.description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="createTask()" data-dismiss="modal">Add</button>
             </div>
         </div>
     </div>
