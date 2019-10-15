@@ -3,7 +3,7 @@ const port = process.env.PORT || 8080;
 var server = new StaticServer({
   rootPath: '.',            // required, the root of the server file tree
   port: port,               // required, the port to listen
-  name: 'my-http-server',   // optional, will set "X-Powered-by" HTTP header
+  name: 'django',   // optional, will set "X-Powered-by" HTTP header
 //   host: '10.0.0.100',       // optional, defaults to any interface
   cors: '*',                // optional, defaults to undefined
   followSymlink: true,      // optional, defaults to a 404 error

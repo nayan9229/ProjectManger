@@ -1,21 +1,25 @@
-var app = angular.module('App', []);
+var app = angular.module('App', ['ngRoute']);
 var baseURL = 'https://pmanager9.herokuapp.com';
 
-// app.config(function($routeProvider) {
-//     $routeProvider
-//     // .when("/", {
-//     //   templateUrl : "index.htm"
-//     // })
-//     .when("/project", {
-//       templateUrl : "project.htm"
-//     })
-//   });
-
-
-function mainController($scope, $http) {
+app.config(function ($routeProvider, $locationProvider) {
+    $routeProvider
+        // route for the home page
+        .when('/', {
+            templateUrl: 'pages/home.html',
+            controller: 'mainController'
+        })
+        // route for the about page
+        .when('/project/:projectId', {
+            templateUrl: 'pages/project.html',
+            controller: 'projectController'
+        })
+    $locationProvider.html5Mode(true)
+});
+app.controller('mainController', function ($scope, $http) {
     $scope.formData = {};
     $scope.newProject = {};
     $scope.isLoading = true;
+    $scope.projects = [];
     getProjects();
     // when landing on the page, get all todos and show them
     $scope.getTodo = function () {
@@ -101,4 +105,19 @@ function mainController($scope, $http) {
             });
     };
 
-}
+});
+
+app.controller('projectController', function ($scope, $http, $routeParams) {
+    $scope.formData = {};
+    $scope.newProject = {};
+    $scope.isLoading = true;
+    $scope.projectId = $routeParams.projectId;
+    var project = {};
+    $scope.projects.forEach(p =>{
+        if(p.id === $scope.projectId){
+            project = p;
+        }
+    });
+    $scope.projects = [];
+    $scope.projects.push(project);
+});
